@@ -24,3 +24,14 @@ vim.api.nvim_create_autocmd('BufEnter', {
   pattern = '',
   callback = fileTypeSetup,
 })
+
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  pattern = { "*" },
+  command = [[%s/\s\+$//e]],
+})
+
+-- Optional: Disable cinoptions for specific file types
+vim.opt.cinoptions = ""
+vim.cmd [[
+  autocmd FileType c,cpp setlocal cinoptions=""
+]]
